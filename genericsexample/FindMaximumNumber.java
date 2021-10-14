@@ -26,9 +26,12 @@ public class FindMaximumNumber<T extends Comparable<T>> {
 		}
 
 		System.out.println("Sorted array" + Arrays.toString(array));
-		System.out.println("Maximum Element :" + array[array.length - 1]);
+		printMax(array);
 		return array[array.length - 1];
+	}
 
+	public static <T> void printMax(T[] array) {
+		System.out.println("Maximum  Element:" + array[array.length - 1]);
 	}
 
 	public static void main(String[] args) {
