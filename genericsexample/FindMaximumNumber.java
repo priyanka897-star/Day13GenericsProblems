@@ -1,8 +1,8 @@
 package genericsexample;
 
 public class FindMaximumNumber {
-	public static Double findMaximumNumber(Double x, Double y, Double z) {
-		Double max = x;
+	public static String findMaximumString(String x, String y, String z) {
+		String max = x;
 		if (y.compareTo(max) > 0) {
 			max = y;
 		}
@@ -13,6 +13,6 @@ public class FindMaximumNumber {
 	}
 
 	public static void main(String[] args) {
-		System.out.println("Maximum Number:" + findMaximumNumber(23.56, 12.34, 521.89));
+		System.out.println("Maximum Number:" + findMaximumString("Apple", "Peach", "Banana"));
 	}
 }
