@@ -1,57 +1,44 @@
 package genericsexample;
 
+import java.util.Arrays;
+
 public class FindMaximumNumber<T extends Comparable<T>> {
-	T x, y, z;
+	T[] array;
 
-	public FindMaximumNumber(T x, T y, T z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	public FindMaximumNumber(T[] array) {
+		this.array = array;
 	}
 
-	public T maximum() {
-		return FindMaximumNumber.maximum(x, y, z);
-
+	public T testMaximum() {
+		return FindMaximumNumber.testMaximum(array);
 	}
 
-	public static <T extends Comparable<T>> T maximum(T x, T y, T z) {
-		T max = x;
-		if (y.compareTo(max) > 0) {
-			max = y;
+	public static <T extends Comparable<T>> T testMaximum(T[] array) {
+		// Sorted array in increasing order.
+		for (int k = 0; k < array.length - 1; k++) {
+			for (int i = 0; i < array.length - k - 1; i++) {
+				if (array[i].compareTo(array[i + 1]) > 0) {
+					T temp = array[i];
+					array[i] = array[i + 1];
+					array[i + 1] = temp;
+				}
+			}
 		}
-		if (z.compareTo(max) > 0) {
-			max = z;
-		}
-		return max;
-	}
 
-	public static String testMaximum(String x, String y, String z) {
+		System.out.println("Sorted array" + Arrays.toString(array));
+		System.out.println("Maximum Element :" + array[array.length - 1]);
+		return array[array.length - 1];
 
-		String max = y;
-		if (y.compareTo(max) > 0) {
-			max = y;
-		}
-		if (z.compareTo(max) > 0) {
-			max = z;
-		}
-		return max;
 	}
 
 	public static void main(String[] args) {
-		Integer xInt = 4, yInt = 5, zInt = 6;
-		Double xDouble = 45.23, yDouble = 67.25, zDouble = 12.89;
-		String xString = "Apple", yString = "Banana", zString = "Orange";
 
-		String maximum = FindMaximumNumber.testMaximum(xString, yString, zString);
-		System.out.println("Maximum String are :" + maximum);
+		Integer[] arrayInt = { 12, 43, 5, 63, 67, 89, 23, 65, 100 };
+		Double[] arrayDouble = { 1.26, 123.6, 90.4, 21.3, 89.87, 34.67, 78.56 };
+		String[] arrayString = { "Apple", "Banana", "Peach", "Mango", "Orange" };
 
-		int maxInt = new FindMaximumNumber<Integer>(xInt, yInt, zInt).maximum();
-		System.out.println("Maximum Number are :" + maxInt);
-
-		double maxDouble = new FindMaximumNumber<Double>(xDouble, yDouble, zDouble).maximum();
-		System.out.println("Maximum Number are :" + maxDouble);
-
-		String maxString = new FindMaximumNumber<String>(xString, yString, zString).maximum();
-		System.out.println("Maximum String are :" + maxString);
+		new FindMaximumNumber<Integer>(arrayInt).testMaximum();
+		new FindMaximumNumber<Double>(arrayDouble).testMaximum();
+		new FindMaximumNumber<String>(arrayString).testMaximum();
 	}
 }
